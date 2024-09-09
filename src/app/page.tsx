@@ -34,7 +34,12 @@ export default function Home() {
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    socketRef.current = io(`${process.env.NEXT_PUBLIC_SOCKET_SERVER_URL}`);
+    const socketUrl = process.env.NEXT_PUBLIC_SOCKET_SERVER_URL;
+    if (!socketUrl) {
+      console.error("Socket server URL is not defined");
+      return;
+    }
+   socketRef.current = io(socketUrl);
     const socket = socketRef.current;
 
     if (socket) {
