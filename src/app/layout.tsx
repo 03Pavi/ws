@@ -1,18 +1,17 @@
 import "./globals.css";
 import StoreProvider from "./storeProvider";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface LayoutProps {
   children: React.ReactNode;
-}>) {
+  types: any; // or some specific type
+}
+const Layout: React.FC<LayoutProps> = ({ children, types }) => {
   return (
     <html lang="en">
       <body>
-        <StoreProvider>
-          {children}
-        </StoreProvider>
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );
 }
+export default Layout
