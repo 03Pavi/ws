@@ -34,7 +34,7 @@ export default function Home() {
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:3000");
+    socketRef.current = io(`${process.env.NEXT_PUBLIC_SOCKET_SERVER_URL}`);
     const socket = socketRef.current;
 
     if (socket) {
